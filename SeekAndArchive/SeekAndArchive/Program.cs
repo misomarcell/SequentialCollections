@@ -17,7 +17,7 @@ namespace SeekAndArchive
                 Console.WriteLine("For a file, called: " + args[1]);
 
 
-                String result = SearchFolder(Directory.GetCurrentDirectory() + args[0], args[1]);
+                String result = SearchFolder(Path.Combine(Directory.GetCurrentDirectory(), args[0]) + , args[1]);
                 if ( result != "" )
                 {
                     Console.Write("File found: " + result);
@@ -57,7 +57,7 @@ namespace SeekAndArchive
                 {
                     foreach (String directory in directories ) {
                         Debug.WriteLine("Directory found: " + directory);
-                        SearchFolder(Directory.GetCurrentDirectory() + directory + "\\", FileName);
+                        SearchFolder(Path.Combine(Directory.GetCurrentDirectory(), directory), FileName);
                     }
                 }
             } else
