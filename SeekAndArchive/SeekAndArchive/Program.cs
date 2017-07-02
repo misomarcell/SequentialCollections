@@ -37,6 +37,7 @@ namespace SeekAndArchive
 
         private static String SearchFolder(String Folder, String FileName)
         {
+            Debug.WriteLine("FILE: " + FileName);
             if ( !File.Exists(Folder + "\\" + FileName) )
             {
                 String[] directories;
@@ -52,6 +53,7 @@ namespace SeekAndArchive
 
                 
                 if ( directories.Length <= 0 ) {
+                    Debug.WriteLine("No more directories");
                     return "";
                 } else
                 {
@@ -60,12 +62,12 @@ namespace SeekAndArchive
                         SearchFolder(Folder + "\\" + new DirectoryInfo(directory).Name, FileName);
                     }
                 }
+
+                return "";
             } else
             {
                 return Folder;
             }
-
-            return "";
         }
     }
 }
