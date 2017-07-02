@@ -17,7 +17,7 @@ namespace SeekAndArchive
                 Console.WriteLine("For a file, called: " + args[1]);
 
 
-                String result = SearchFolder(Directory.GetCurrentDirectory() + args[0], args[1]);
+                String result = SearchFolder((Directory.GetCurrentDirectory() + "\\" + args[0]), args[1]);
                 if ( result != "" )
                 {
                     Console.Write("File found: " + result);
@@ -37,7 +37,7 @@ namespace SeekAndArchive
 
         private static String SearchFolder(String Folder, String FileName)
         {
-            if ( !File.Exists(FileName) )
+            if ( !File.Exists(Folder + "\\" + FileName) )
             {
                 String[] directories;
                 try
@@ -46,7 +46,7 @@ namespace SeekAndArchive
                 }
                 catch (Exception e)
                 {
-                    Debug.WriteLine("Error while searching: " + e);
+                    Debug.WriteLine("(" + Folder + ") Error while searching: " + e);
                     return "";
                 }
 
@@ -57,7 +57,7 @@ namespace SeekAndArchive
                 {
                     foreach (String directory in directories ) {
                         Debug.WriteLine("Directory found: " + directory);
-                        SearchFolder(Directory.GetCurrentDirectory() + directory + "\\", FileName);
+                        SearchFolder(Folder + "\\" + new DirectoryInfo(directory).Name, FileName);
                     }
                 }
             } else
