@@ -60,14 +60,13 @@ namespace SeekAndArchive
                 {
                     foreach (String directory in directories ) {
                         Debug.WriteLine("Directory found: " + directory);
-                         fileFound = SearchFolder(Folder + "\\" + new DirectoryInfo(directory).Name, FileName);
+                        fileFound = SearchFolder(Folder + "\\" + new DirectoryInfo(directory).Name, FileName);
+
+                        if (fileFound != "")
+                        {
+                            return fileFound;
+                        }
                     }
-                }
-
-
-                if (fileFound != "")
-                {
-                    return fileFound;
                 }
             } 
                 return Folder;
