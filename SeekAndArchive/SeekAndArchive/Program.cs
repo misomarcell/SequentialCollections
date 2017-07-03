@@ -37,6 +37,7 @@ namespace SeekAndArchive
 
         private static String SearchFolder(String Folder, String FileName)
         {
+            String fileFound = "";
             Debug.WriteLine("FILE: " + FileName);
             if ( !File.Exists(Folder + "\\" + FileName) )
             {
@@ -59,15 +60,17 @@ namespace SeekAndArchive
                 {
                     foreach (String directory in directories ) {
                         Debug.WriteLine("Directory found: " + directory);
-                        SearchFolder(Folder + "\\" + new DirectoryInfo(directory).Name, FileName);
+                         fileFound = SearchFolder(Folder + "\\" + new DirectoryInfo(directory).Name, FileName);
                     }
                 }
 
-                return "";
-            } else
-            {
+
+                if (fileFound != "")
+                {
+                    return fileFound;
+                }
+            } 
                 return Folder;
-            }
         }
     }
 }
